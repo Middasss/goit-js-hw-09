@@ -44,6 +44,7 @@ const onBtnStart = () => {
 
     if (currentDate <= Date.now()) {
       clearInterval(timerId);
+      return;
     }
 
     daysEl.textContent = addLeadingZero(days);

@@ -23,17 +23,16 @@ const submitForm = event => {
   } = event.currentTarget;
 
   const delayEl = Number(delay.value);
-  const stepEl = Number(step.value);
   const amountEl = Number(amount.value);
+  const stepEl = Number(step.value);
 
   for (let i = 0; i < amountEl; i++) {
-    createPromise(i + 1, delayEl + stepEl * 1)
+    createPromise(i + 1, delayEl + stepEl * i)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
           `✅ Fulfilled promise ${position} in ${delay}ms`
         );
       })
-
       .catch(({ position, delay }) => {
         Notiflix.Notify.failure(
           `❌ Rejected promise ${position} in ${delay}ms`
@@ -45,11 +44,3 @@ const submitForm = event => {
 };
 
 formEl.addEventListener('submit', submitForm);
-
-// createPromise(2, 1500)
-//   .then(({ position, delay }) => {
-//     console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
-//   })
-//   .catch(({ position, delay }) => {
-//     console.log(`❌ Rejected promise ${position} in ${delay}ms`);
-//   });
